@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <div class="row justify-content-between align-items-center mb-3">
+      <div class="col">
+        <h2>Welcome to the Dashboard, {{ user.fname }} {{ user.lname }}</h2>
+      </div>
+      <div class="col-auto">
+        <button (click)="logoutAction()" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  
+    <div *ngIf="userRole === 'user'">
+      <p>User Details:</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ userDetails.fname }}</td>
+            <td>{{ userDetails.lname }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="userRole === 'admin'">
+      <p>All Users Details:</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of allUsers">
+            <td>{{ user.id }}</td>
+            <td>{{ user.fname }}</td>
+            <td>{{ user.lname }}</td>
+            <td><button (click)="editUser(user.id)">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
